@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from tkinter import filedialog, Tk
-import matplotlib.patches as patches
 
 def cek_kesehatan_daun_histogram(img_path):
     img = cv2.imread(img_path)
@@ -47,7 +46,6 @@ def cek_kesehatan_daun_histogram(img_path):
     labels = ['Hue','Saturation','Value']
 
     for i, col in enumerate(colors):
-        # Hue pakai 180 bins, S & V pakai 256 bins
         bins = 180 if i == 0 else 256
         range_vals = [0,180] if i == 0 else [0,256]
         hist = cv2.calcHist([hsv], [i], mask_leaf, [bins], range_vals)
@@ -91,7 +89,6 @@ if __name__ == "__main__":
         cek_kesehatan_daun_histogram(file_path)
     else:
         print("Tidak ada file yang dipilih.")
-
 
 #Program ini digunakan untuk mendeteksi kesehatan daun berdasarkan warna dominan dengan metode analisis citra menggunakan OpenCV dan matplotlib.
 # Daun dianggap sehat jika mayoritas areanya berwarna hijau, dan dianggap tidak sehat jika terdapat dominasi warna lain (kuning, oranye, coklat).
